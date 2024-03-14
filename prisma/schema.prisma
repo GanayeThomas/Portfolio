@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Contact {
+  id         BigInt   @id @default(autoincrement())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  titre      String?
+  coord      String?
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model ProjectSkills {
+  id         BigInt  @id @default(autoincrement())
+  skill_id   BigInt?
+  project_id BigInt?
+  Projet     Projet? @relation(fields: [project_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "public_ProjectSkills_project_id_fkey")
+  skill      skill?  @relation(fields: [skill_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "public_ProjectSkills_skill_id_fkey")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Projet {
+  id            BigInt          @id @default(autoincrement())
+  created_at    DateTime        @default(now()) @db.Timestamptz(6)
+  title         String?
+  description   String?
+  gitUrl        String?
+  webUrl        String?
+  ProjectSkills ProjectSkills[]
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model exp_education {
+  id         BigInt    @id @default(autoincrement())
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  title      String?
+  descript   String?
+  dateDebut  DateTime? @db.Date
+  dateFin    DateTime? @db.Date
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model skill {
+  id            BigInt          @id @default(autoincrement())
+  titre         String?
+  imgUrl        String?
+  ProjectSkills ProjectSkills[]
+}
