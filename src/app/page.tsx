@@ -1,20 +1,8 @@
 "use client";
 
+import Projects from "@/components/Projects";
+import Skills from "@/components/Skills";
 import React, { useState, useEffect } from "react";
-export interface Project {
-  id: number;
-  created_at: Date;
-  title: string | null;
-  description: string | null;
-  gitUrl: string | null;
-  webUrl: string | null;
-}
-
-export interface Skill {
-  id: number;
-  titre: string | null;
-  imgUrl: string | null;
-}
 
 export interface Education {
   id: number;
@@ -30,8 +18,6 @@ export interface Contact {
 
 export default function Home() {
   // Déclaration des états pour stocker les données de l'API.
-  const [projets, setProjets] = useState<Project[]>([]);
-  const [skills, setSkills] = useState<Skill[]>([]);
   const [education, setEducation] = useState<Education[]>([]);
   const [contact, setContact] = useState<Contact[]>([]);
 
@@ -41,13 +27,6 @@ export default function Home() {
   // Utilisation de useEffect pour charger les données au montage du composant.
   useEffect(() => {
     async function fetchData() {
-      // Récupération des projets depuis l'API et mise à jour de l'état.
-      const projects = await fetch("/api/projects", { cache: "force-cache" });
-      if (projects.ok) {
-        const data: Project[] = await projects.json();
-        console.log("data : ", data);
-        setProjets(data);
-      }
 
       // Récupération des contacts depuis l'API et mise à jour de l'état.
       const contacts = await fetch("/api/contacts", { cache: "force-cache" });
@@ -62,12 +41,6 @@ export default function Home() {
         const data: Education[] = await educations.json();
         setEducation(data);
       }
-      // Récupération des compétences depuis l'API et mise à jour de l'état.
-      const skills = await fetch("/api/skills", { cache: "force-cache" });
-      if (skills.ok) {
-        const data: Skill[] = await skills.json();
-        setSkills(data);
-      }
     }
     // Appel de la fonction fetchData.
     fetchData();
@@ -77,27 +50,12 @@ export default function Home() {
   // Fonction pour rendre la section sélectionnée.
   function renderSection() {
     switch (selectedSection) {
-      // Génération du JSX pour la section 'projets'.
+      // Projects.
       case "projets":
-        return projets.map((projet) => (
-          <div key={projet.id} className="bg-gray-200 p-4 rounded-lg">
-            <a
-              href={projet.gitUrl ?? undefined}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {projet.title}
-            </a>
-          </div>
-        ));
+        return <Projects />
       // Génération du JSX pour la section 'skills'.
       case "skills":
-        return skills.map((skill) => (
-          <div key={skill.id} className="p-4 rounded-lg">
-            <img className="w-50 h-20" src={skill.imgUrl ? skill.imgUrl : ""} />
-            <p>{skill.titre}</p>
-          </div>
-        ));
+        return <Skills />
       // Génération du JSX pour la section 'education'.
       case "education":
         return education.map((education) => (
