@@ -31,36 +31,34 @@ export default function Home() {
           <div>
             <p>
               Bonjour je suis Thomas <br />
-              Joueur depuis de nombreuses années, j'ai
-              décidé d'aller vers la programmation pour atteindre ce but <br />
+              Joueur depuis de nombreuses années, j'ai décidé d'aller vers la
+              programmation pour atteindre ce but <br />
               et améliorer mes compétences
             </p>
           </div>
         );
-        
     }
   }
 
   // Rendu du composant avec une mise en page et l'affichage de la section sélectionnée.
   return (
     <main className="flex flex-col justify-center items-center">
-      <div className="flex flex-wrap items-center">
+      <nav className="mb-8 flex justify-center gap-10 flex-wrap text-lg bg-green-900 w-1/2  border rounded-full py-3">
+      <button className={`hover:text-amber-500 ${selectedSection === "projets" ? "text-amber-500" : "text-white"}`}onClick={() => setSelectedSection("projets")}>Projets</button>
+        <button className={`hover:text-amber-500 ${selectedSection === "skills" ? "text-amber-500" : "text-white"}`}onClick={() => setSelectedSection("skills")}>
+          Compétences   
+        </button>
         <Image src="/images/logo.png" alt="Logo" width="75" height="100" />
-        <p className="my-10 text-3xl text-amber-500">Welcome !</p>
+        <button className={`hover:text-amber-500 ${selectedSection === "education" ? "text-amber-500" : "text-white"}`}onClick={() => setSelectedSection("education")}>
+          Formations
+        </button>
+        <button className={`hover:text-amber-500 ${selectedSection === "contact" ? "text-amber-500" : "text-white"}`}onClick={() => setSelectedSection("contact")}>Contact</button>
+      </nav>
+      <div className="flex flex-wrap items-center">
+        
+        <p className="my-10 text-5xl text-amber-500 font-bold">Welcome !</p>
       </div>
-      <div className="text-center">
-        <nav className="mb-8 flex justify-center gap-4 flex-wrap text-lg">
-          <button onClick={() => setSelectedSection("projets")}>Projets</button>
-          <button onClick={() => setSelectedSection("skills")}>
-            Compétences
-          </button>
-          <button onClick={() => setSelectedSection("education")}>
-            Formations
-          </button>
-          <button onClick={() => setSelectedSection("contact")}>Contact</button>
-        </nav>
-        {renderSection()}
-      </div>
+      <div className="text-center flex justify-center">{renderSection()}</div>
     </main>
   );
 }

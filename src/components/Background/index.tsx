@@ -2,7 +2,7 @@ import Image from "next/image";
 import background from "/public/images/pixel.png";
 
 export default function Background() {
-    return (<Image
+    return (<Image className="max-h-screen"
     src={background}
     alt="Background"
     placeholder="blur"

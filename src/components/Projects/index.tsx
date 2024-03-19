@@ -36,7 +36,7 @@ export default function Projects() {
     }, []);
 
   return projets.map((projet) => (
-    <div key={projet.id} className="bg-gray-200 p-4 rounded-lg my-5">
+    <div key={projet.id} className="bg-blue-700 p-4 rounded-lg m-5 text-white">
       <a
         href={projet.webUrl ?? undefined}
         target="_blank"
