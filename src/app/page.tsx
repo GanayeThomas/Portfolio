@@ -1,101 +1,65 @@
 "use client";
 
+import Contacts from "@/components/Contacts";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
-import React, { useState, useEffect } from "react";
-
-export interface Education {
-  id: number;
-  title: string | null;
-}
-
-export interface Contact {
-  id: number;
-  created_at: Date;
-  titre: string | null;
-  coord: string | null;
-}
+import Education from "@/components/Educations";
+import React, { useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
-  // Déclaration des états pour stocker les données de l'API.
-  const [education, setEducation] = useState<Education[]>([]);
-  const [contact, setContact] = useState<Contact[]>([]);
-
   // État pour stocker la section sélectionnée par l'utilisateur.
   const [selectedSection, setSelectedSection] = useState("");
-
-  // Utilisation de useEffect pour charger les données au montage du composant.
-  useEffect(() => {
-    async function fetchData() {
-
-      // Récupération des contacts depuis l'API et mise à jour de l'état.
-      const contacts = await fetch("/api/contacts", { cache: "force-cache" });
-      if (contacts.ok) {
-        const data: Contact[] = await contacts.json();
-        console.log("data : ", data);
-        setContact(data);
-      }
-      // Récupération des formations depuis l'API et mise à jour de l'état.
-      const educations = await fetch("/api/educations", {cache: "force-cache"});
-      if (educations.ok) {
-        const data: Education[] = await educations.json();
-        setEducation(data);
-      }
-    }
-    // Appel de la fonction fetchData.
-    fetchData();
-    // Le tableau de dépendances vide signifie que l'effet s'exécute une fois au montage du composant.
-  }, []);
 
   // Fonction pour rendre la section sélectionnée.
   function renderSection() {
     switch (selectedSection) {
       // Projects.
       case "projets":
-        return <Projects />
-      // Génération du JSX pour la section 'skills'.
+        return <Projects />;
+      // Skills
       case "skills":
-        return <Skills />
-      // Génération du JSX pour la section 'education'.
+        return <Skills />;
+      // Education
       case "education":
-        return education.map((education) => (
-          <div key={education.id} className="p-4 rounded-lg">
-            <p>{education.title}</p>
-          </div>
-        ));
-      // Génération du JSX pour la section 'contact'.
+        return <Education />;
+      // Contact
       case "contact":
-        return contact.map((contact) => (
-          <div key={contact.id} className="bg-gray-200 p-4 rounded-lg">
-            <a
-              href={contact.titre ?? undefined}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {contact.titre}
-            </a>
-          </div>
-        ));
-      // Gestion du cas où la section n'est pas trouvée.
+        return <Contacts />;
       default:
-        return <p>Section non trouvée.</p>;
+        return (
+          <div>
+            <p>
+              Bonjour je suis Thomas <br />
+              Joueur depuis de nombreuses années, j'ai
+              décidé d'aller vers la programmation pour atteindre ce but <br />
+              et améliorer mes compétences
+            </p>
+          </div>
+        );
+        
     }
   }
 
   // Rendu du composant avec une mise en page et l'affichage de la section sélectionnée.
   return (
     <main className="flex flex-col justify-center items-center">
-      <div>
-        <p className="mb-10 text-3xl text-amber-500">Welcome !</p>
+      <div className="flex flex-wrap items-center">
+        <Image src="/images/logo.png" alt="Logo" width="75" height="100" />
+        <p className="my-10 text-3xl text-amber-500">Welcome !</p>
       </div>
       <div className="text-center">
-        <nav className="mb-8 flex justify-center gap-4 flex-wrap">
-          <button onClick={() => {console.log('Projets sélectionné'); setSelectedSection("projets"); }}>Projets</button>
-          <button onClick={() => {console.log('skill selectionné'); setSelectedSection("skills")}}>Compétences</button>
-          <button onClick={() => {console.log('education selectionné');setSelectedSection("education")}}>Formations</button>
-          <button onClick={() => {console.log('contact selectionné');setSelectedSection("contact")}}>Contact</button>
+        <nav className="mb-8 flex justify-center gap-4 flex-wrap text-lg">
+          <button onClick={() => setSelectedSection("projets")}>Projets</button>
+          <button onClick={() => setSelectedSection("skills")}>
+            Compétences
+          </button>
+          <button onClick={() => setSelectedSection("education")}>
+            Formations
+          </button>
+          <button onClick={() => setSelectedSection("contact")}>Contact</button>
         </nav>
-        {renderSection()} 
+        {renderSection()}
       </div>
     </main>
   );

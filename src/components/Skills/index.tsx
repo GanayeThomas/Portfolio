@@ -18,10 +18,14 @@ export default function Skills() {
     }
     fetchData();
   }, []);
-  return skills.map((skill) => (
-    <div key={skill.id} className="p-4 rounded-lg">
-      <img className="w-50 h-20" src={skill.imgUrl ? skill.imgUrl : ""} />
-      <p>{skill.titre}</p>
+  return (
+    <div className="flex flex-wrap items-center">
+      {skills.map((skill) => (
+        <div key={skill.id} className="p-4 rounded-lg">
+          <img className="w-50 h-20" src={skill.imgUrl ? skill.imgUrl : ""}/>
+          <p>{skill.titre}</p>
+        </div>
+      ))}
     </div>
-  ));
+  );
 }
