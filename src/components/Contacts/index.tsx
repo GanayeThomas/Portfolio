@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ContactForm from "../Contactform";
 
 export interface Contact {
   id: number;
@@ -32,7 +33,9 @@ export default function Contacts() {
   }, []); // Le tableau vide comme deuxième argument signifie que l'effet s'exécute une fois au montage du composant.
 
   // Rendu des contacts. Pour chaque contact dans l'état `contact`, un div est rendu.
-  return contact.map((contact) => (
+  return (
+    <div>
+    {contact.map((contact) => (
     <div key={contact.id} className="bg-gray-200 p-4 rounded-lg my-5">
       <a
         href={contact.coord ?? undefined}
@@ -42,5 +45,10 @@ export default function Contacts() {
         {contact.titre}
       </a>
     </div>
-  ));
+  ))}
+  <div>
+    <ContactForm />
+  </div>
+  </div>
+  )
 };
