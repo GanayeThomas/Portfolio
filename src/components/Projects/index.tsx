@@ -35,15 +35,25 @@ export default function Projects() {
       fetchData();
     }, []);
 
-  return projets.map((projet) => (
-    <div key={projet.id} className="bg-blue-700 p-4 rounded-lg m-5 text-white">
-      <a
-        href={projet.webUrl ?? undefined}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {projet.title}
-      </a>
-    </div>
-  ));
+    return projets.map((projet) => (
+      <div key={projet.id} className="bg-blue-700 p-4 rounded-lg m-5 text-white">
+        <a
+          href={projet.webUrl ?? undefined}
+          target="_blank"
+          rel="noopener noreferrer" 
+        >
+          {projet.title}
+        </a>
+        {projet.gitUrl && (
+          <a
+            href={projet.gitUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 block"
+          >
+            Voir le code source
+          </a>
+        )}
+      </div>
+    ));
 }
