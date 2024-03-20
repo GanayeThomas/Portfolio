@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ContactForm from "../Contactform";
 
 export interface Contact {
+  type: string;
   id: number;
   created_at: Date;
   titre: string | null;
@@ -35,20 +36,23 @@ export default function Contacts() {
   // Rendu des contacts. Pour chaque contact dans l'état `contact`, un div est rendu.
   return (
     <div>
-    {contact.map((contact) => (
-    <div key={contact.id} className="bg-gray-200 p-4 rounded-lg my-5">
-      <a
-        href={contact.coord ?? undefined}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {contact.titre}
-      </a>
+      {contact.map((contact) => (
+        <div key={contact.id} className="bg-gray-200 p-4 rounded-lg my-5">
+          <a
+            href={contact.coord ? contact.coord : undefined}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {contact.titre}
+          </a>
+        </div>
+      ))}
+      <div className="bg-[#1fa61b] rounded-2xl p-5">
+        <p> Formulaire de contact </p>
+        <ContactForm />
+      </div>
     </div>
-  ))}
-  <div>
-    <ContactForm />
-  </div>
-  </div>
-  )
-};
+  );
+}
+    
+  

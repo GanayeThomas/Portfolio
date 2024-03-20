@@ -29,11 +29,10 @@ export default function Home() {
       default:
         return (
           <div>
-            <p>
+            <p className="bg-[#45b8f8] p-1 rounded-lg">
               Bonjour je suis Thomas <br />
-              Joueur depuis de nombreuses années, j'ai décidé d'aller vers la
-              programmation pour atteindre ce but <br />
-              et améliorer mes compétences
+              Joueur depuis de nombreuses années, j'ai décidé<br />  d'aller vers la
+              programmation pour atteindre ce but <br /> et améliorer mes compétences
             </p>
           </div>
         );
@@ -44,18 +43,41 @@ export default function Home() {
   return (
     <main className="flex flex-col justify-center items-center">
       <nav className="mb-8 flex justify-center gap-10 flex-wrap text-lg bg-green-900 w-1/2  border rounded-full py-3">
-      <button className={`hover:text-amber-500 ${selectedSection === "projets" ? "text-amber-500" : "text-white"}`}onClick={() => setSelectedSection("projets")}>Projets</button>
-        <button className={`hover:text-amber-500 ${selectedSection === "skills" ? "text-amber-500" : "text-white"}`}onClick={() => setSelectedSection("skills")}>
-          Compétences   
+        <button
+          className={`hover:text-amber-500 ${
+            selectedSection === "projets" ? "text-amber-500" : "text-white"
+          }`}
+          onClick={() => setSelectedSection("projets")}
+        >
+          Projets
+        </button>
+        <button
+          className={`hover:text-amber-500 ${
+            selectedSection === "skills" ? "text-amber-500" : "text-white"
+          }`}
+          onClick={() => setSelectedSection("skills")}
+        >
+          Compétences
         </button>
         <Image src="/images/logo.png" alt="Logo" width="75" height="100" />
-        <button className={`hover:text-amber-500 ${selectedSection === "education" ? "text-amber-500" : "text-white"}`}onClick={() => setSelectedSection("education")}>
+        <button
+          className={`hover:text-amber-500 ${
+            selectedSection === "education" ? "text-amber-500" : "text-white"
+          }`}
+          onClick={() => setSelectedSection("education")}
+        >
           Formations
         </button>
-        <button className={`hover:text-amber-500 ${selectedSection === "contact" ? "text-amber-500" : "text-white"}`}onClick={() => setSelectedSection("contact")}>Contact</button>
+        <button
+          className={`hover:text-amber-500 ${
+            selectedSection === "contact" ? "text-amber-500" : "text-white"
+          }`}
+          onClick={() => setSelectedSection("contact")}
+        >
+          Contact
+        </button>
       </nav>
       <div className="flex flex-wrap items-center">
-        
         <p className="my-10 text-5xl text-amber-500 font-bold">Welcome !</p>
       </div>
       <div className="text-center flex justify-center">{renderSection()}</div>
