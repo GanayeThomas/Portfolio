@@ -54,7 +54,7 @@ export default function Home() {
             <p className="bg-[#45b8f8]">
               Bonjour je suis Thomas <br />
               Joueur depuis de nombreuses années, j ai décidé
-              <br /> d aller vers la programmation pour atteindre ce but <br />{" "}
+              <br /> d aller vers la programmation pour atteindre ce but <br />
               et améliorer mes compétences
             </p>
           </div>
@@ -65,6 +65,7 @@ export default function Home() {
   // Rendu du composant avec une mise en page et l'affichage de la section sélectionnée.
   return (
     <main className="flex flex-col justify-center items-center">
+      
       <button className="xl:hidden" onClick={toggleMenu}>
         Menu
       </button>
