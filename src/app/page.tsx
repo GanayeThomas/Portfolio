@@ -53,8 +53,8 @@ export default function Home() {
           <div>
             <p className="bg-[#45b8f8]">
               Bonjour je suis Thomas <br />
-              Joueur depuis de nombreuses années, j'ai décidé
-              <br /> d'aller vers la programmation pour atteindre ce but <br />{" "}
+              Joueur depuis de nombreuses années, j ai décidé
+              <br /> d aller vers la programmation pour atteindre ce but <br />{" "}
               et améliorer mes compétences
             </p>
           </div>
