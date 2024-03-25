@@ -74,7 +74,7 @@ export default function Home() {
       <nav
         className={`${
           isMenuOpen ? "flex flex-col" : "hidden"
-        } xl:flex mb-8 justify-center gap-10 flex-wrap text-lg bg-green-900 w-full md:w-1/2 border rounded-3xl py-3`}
+        } xl:flex mb-8 justify-center gap-10 flex-wrap text-lg bg-green-900 w-1/2 border rounded-3xl py-3`}
       >
         <button
           className={`hover:text-amber-500 ${
