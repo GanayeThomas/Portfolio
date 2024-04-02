@@ -38,7 +38,7 @@
             process.env.NEXT_PUBLIC_SERVICE_ID,
             process.env.NEXT_PUBLIC_TEMPLATE_ID,  
             e.currentTarget,
-            process.env.NEXT_PUBLIC_KEY
+            process.env.API_KEY
           )
           .then(() => {
             setIsSubmitting(false);
