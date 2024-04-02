@@ -28,6 +28,7 @@ export default function Education() {
   return education.map((education) => (
     <div key={education.id} className="p-4 rounded-lg bg-[#f8d1a3]">
       <p>{education.title}</p>
+      <p>Test</p>
     </div>
   ));
 }
